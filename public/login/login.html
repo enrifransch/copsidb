@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html ng-app='copsiLogin'>
+    <head>
+        <title>COPSI</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
+
+    </head>
+    <body ng-controller="loginController">
+        <div class="wrapper" ng-cloak >
+            <div class="container col-xs-12 col-sm-offset-2 col-sm-8 col-md-offset-3 col-md-6 col-lg-offset-4 col-lg-4"
+                style="transform:translateY(70%);">
+                <br />
+                <div class="panel panel-default">
+                    <div class="panel-heading" style="background-color:#ff8533">
+                        <div class="text-center">
+                            <h2>Iniciar sesión</h2>
+                        </div>        
+                    </div>
+                    <div class="panel-body">
+                        <form class="login">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon" style="background-color:#ff8533">
+                                        <i class="glyphicon glyphicon-user" style="width: auto"></i>
+                                    </span>
+                                    <input id="user"type="text" class="form-control" ng-model="username" placeholder="Usuario" required/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon" style="background-color:#ff8533">
+                                        <i class="glyphicon glyphicon-lock" style="width: auto "></i>
+                                    </span>
+                                    <input id="password" type="password" class="form-control" ng-model="password" placeholder="Contrase&ntilde;a" required/>
+                                </div>
+                            </div>
+                            <button ng-disabled="password.length<3 || username.length<3" class="btn btn-default" ng-click="attemptLogin(username,password)" style="width: 100%; background-color:#ff8533; font-weight: bold; ">
+                                Ingresar
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+        
+    
+    <script src="../login/js/angular/angular.min.js"></script>
+    <script src="../login/js/app.js"></script>
+</html>
