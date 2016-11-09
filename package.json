@@ -1,20 +1,23 @@
 {
   "name": "copsi-portal",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "start": "node ./bin/www"
   },
   "dependencies": {
-    "angular": "^1.5.8",
+    "bcryptjs": "^2.3.0",
     "body-parser": "~1.15.2",
     "cookie-parser": "~1.4.3",
     "crypto-js": "^3.1.8",
     "debug": "~2.2.0",
     "express": "~4.14.0",
     "jade": "~1.11.0",
+    "jsonwebtoken": "^5.0.5",
     "morgan": "~1.7.0",
+    "sequelize": "^3.5.1",
     "serve-favicon": "~2.3.0",
+    "sqlite3": "^3.1.8",
     "underscore": "^1.8.3"
   }
 }

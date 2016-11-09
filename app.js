@@ -3,24 +3,27 @@ var path = require('path');
 var favicon = require('serve-favicon');
 var bodyParser = require('body-parser');
 var _ = require('underscore');
-
+//var middleware = require('./middleware.js')(db);
+var bcrypt = require('bcryptjs');
+var db = require('./db.js');
 
 var app = express();
 
-var validUser = false;
+var validuser = false;
+var current_user;
 
-// uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', function(req, res){
-  if(validUser){
-    res.redirect('/main');
-  }
-
   res.sendFile('login.html', {root: __dirname + '/public/login/'});
+});
+
+app.get('/forbidden', function(req, res){
+
+  res.sendFile('forbidden.html', {root: __dirname + '/public/authorization'});
 
 });
 
