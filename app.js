@@ -33,4 +33,8 @@ app.get('/main', function(req, res){
   
 });
 
+db.sequelize.sync({force: true}).then(function(){
+  
+});
+
 module.exports = app;

@@ -47,33 +47,87 @@
                             <a href="#/"><i class="fa fa-fw fa-database"></i> Dashboard</a>
                         </li>
                         <li>
-                            <a href="#/alumnos"><i class="fa fa-fw fa-user-circle"></i> Alumnos</a>
-                        </li>
-                        <li>
-                            <a href="#/personal"><i class="fa fa-fw fa-venus-mars"></i> Personal</a>
-                        </li>
-                        <li>
-                            <a href="#/cursos"><i class="fa fa-fw fa-cogs"></i> Cursos</a>
-                        </li>
-                        <li>
-                            <a href="#/diplomados"><i class="fa fa-fw fa-graduation-cap"></i> Diplomados</a>
-                        </li>
-                        <li>
-                            <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-wrench"></i> Talleres <i class="fa fa-fw fa-caret-down"></i></a>
-                            <ul id="demo" class="collapse">
+                            <a href="javascript:;" data-toggle="collapse" data-target="#alumnos"><i class="fa fa-fw fa-user-circle"></i> Alumnos <i class="fa fa-fw fa-caret-down"></i></a>
+                            <ul id="alumnos" class="collapse">
                                 <li>
-                                    <a href="#/talleresdh">Desarrollo Humano</a>
+                                    <a href="#/alumnos">Ver Alumnos</a>
                                 </li>
                                 <li>
-                                    <a href="#/talleresfs">Fin de Semana</a>
+                                    <a href="#/alumnos">Editar Alumnos</a>
                                 </li>
                             </ul>
                         </li>
                         <li>
-                            <a href="#/inventario"><i class="fa fa-fw fa-shopping-cart"></i> Inventario</a>
+                            <a href="javascript:;" data-toggle="collapse" data-target="#personal"><i class="fa fa-fw fa-venus-mars"></i> Personal <i class="fa fa-fw fa-caret-down"></i></a>
+                            <ul id="personal" class="collapse">
+                                <li>
+                                    <a href="#/personal">Ver Personal</a>
+                                </li>
+                                <li>
+                                    <a href="#/personal">Editar Personal</a>
+                                </li>
+                            </ul>
                         </li>
                         <li>
-                            <a href="#/biblioteca"><i class="fa fa-fw fa-book"></i> Biblioteca</a>
+                            <a href="javascript:;" data-toggle="collapse" data-target="#cursos"><i class="fa fa-fw fa-cogs"></i> Cursos <i class="fa fa-fw fa-caret-down"></i></a>
+                            <ul id="cursos" class="collapse">
+                                <li>
+                                    <a href="#/cursos">Ver Cursos</a>
+                                </li>
+                                <li>
+                                    <a href="#/cursos">Editar Cursos</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript:;" data-toggle="collapse" data-target="#diplomados"><i class="fa fa-fw fa-graduation-cap"></i> Diplomados <i class="fa fa-fw fa-caret-down"></i></a>
+                            <ul id="diplomados" class="collapse">
+                                <li>
+                                    <a href="#/diplomados">Ver Diplomados</a>
+                                </li>
+                                <li>
+                                    <a href="#/diplomados">Editar Diplomados</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript:;" data-toggle="collapse" data-target="#talleres"><i class="fa fa-fw fa-wrench"></i> Talleres <i class="fa fa-fw fa-caret-down"></i></a>
+                            <ul id="talleres" class="collapse">
+                                <li>
+                                    <a href="#/talleresdh">Ver Desarrollo Humano</a>
+                                </li>
+                                <li>
+                                    <a href="#/talleresfs">Ver Fin de Semana</a>
+                                </li>
+                                <li>
+                                    <a href="#/talleresdh">Editar Desarrollo Humano</a>
+                                </li>
+                                <li>
+                                    <a href="#/talleresfs">Editar Fin de Semana</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript:;" data-toggle="collapse" data-target="#inventario"><i class="fa fa-fw fa-shopping-cart"></i> Inventario <i class="fa fa-fw fa-caret-down"></i></a>
+                            <ul id="inventario" class="collapse">
+                                <li>
+                                    <a href="#/inventario">Ver Inventario</a>
+                                </li>
+                                <li>
+                                    <a href="#/inventario">Editar Inventario</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript:;" data-toggle="collapse" data-target="#biblioteca"><i class="fa fa-fw fa-book"></i> Biblioteca <i class="fa fa-fw fa-caret-down"></i></a>
+                            <ul id="biblioteca" class="collapse">
+                                <li>
+                                    <a href="#/biblioteca">Ver Biblioteca</a>
+                                </li>
+                                <li>
+                                    <a href="#/biblioteca">Editar biblioteca</a>
+                                </li>
+                            </ul>
                         </li>
                     </ul>
                 </div>
@@ -90,6 +144,7 @@
     <script src="../bootstrap/js/bootstrap.min.js"></script>
     <script src="../angular/angular/angular.min.js"></script>
     <script src="../angular/angular-route/angular-route.js"></script>
+    <script src="../angular/angular-css/angular-css.min.js"></script>
 
     <!-- Main angular file -->
     <script src="../main/js/app.js"></script>
