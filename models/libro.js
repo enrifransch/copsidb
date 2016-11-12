@@ -1,11 +1,5 @@
 module.exports = function (sequelize, DataTypes){
     return sequelize.define('libro', {
-        id_libro: {
-            allowNull: false,
-            autoIncrement: true,
-            primaryKey: true,
-            type: DataTypes.INTEGER
-        },
         isbn: {
             type: DataTypes.TEXT
         },

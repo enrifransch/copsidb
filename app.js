@@ -17,6 +17,15 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.get('/alumnos', function(req, res){
+  db.alumno.findAll().then(function(alumnos) {
+    res.json(alumnos);
+  }, function(er){
+    res.status(500).send();
+    console.log(er);
+  });
+});
+
 app.get('/', function(req, res){
   res.sendFile('login.html', {root: __dirname + '/public/login/'});
 });
@@ -33,8 +42,21 @@ app.get('/main', function(req, res){
   
 });
 
-db.sequelize.sync({force: true}).then(function(){
-  
+//Loads the DB, force: true drops everything
+db.sequelize.sync({/*force: true*/}).then(function(){
+  /*return db.alumno.create({
+    nombre: 'lalitros',
+    apellidos: 'castilla',
+    direccion: 'valle del carmen',
+    email: 'joud',
+    celular: '555555',
+    telefono: '555555',
+    fechaNac: '1992-09-12',
+    sexo: 'femenino',
+    escolaridad: 'nula',
+    hrsTerapia: 10,
+    cuota: 1000
+  });*/
 });
 
 module.exports = app;

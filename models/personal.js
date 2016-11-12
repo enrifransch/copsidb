@@ -1,11 +1,5 @@
 module.exports = function (sequelize, DataTypes){
     return sequelize.define('personal', {
-        id_personal: {
-            allowNull: false,
-            autoIncrement: true,
-            primaryKey: true,
-            type: DataTypes.INTEGER
-        },
         nombre: {
             type: DataTypes.TEXT
         },

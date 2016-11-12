@@ -2,7 +2,7 @@
     <div class="table-title">
         <h3>Alumnos</h3>
     </div>
-    <table class="table-fill">
+    <table class="table-fill" ng-controller = "alumnosController">
         <thead>
             <tr>
                 <th class="text-left">ID</th>
@@ -19,8 +19,21 @@
                 <th class="text-left">Cuota</th>
             </tr>
         </thead>
-        <tbody class="table-hover">
-        
+        <tbody class="table-hover" ng-repeat="alumno in alumnos">
+            <tr>
+                <td class="text-left">{{alumno.id}}</td>
+                <td class="text-left">{{alumno.nombre}}</td>
+                <td class="text-left">{{alumno.apellidos}}</td>
+                <td class="text-left">{{alumno.direccion}}</td>
+                <td class="text-left">{{alumno.email}}</td>
+                <td class="text-left">{{alumno.celular}}</td>
+                <td class="text-left">{{alumno.telefono}}</td>
+                <td class="text-left">{{alumno.fechaNac}}</td>
+                <td class="text-left">{{alumno.sexo}}</td>
+                <td class="text-left">{{alumno.escolaridad}}</td>
+                <td class="text-left">{{alumno.hrsTerapia}}</td>
+                <td class="text-left">{{alumno.cuota}}</td>
+            </tr>
         </tbody>
     </table>
 </body>

@@ -1,11 +1,5 @@
 module.exports = function (sequelize, DataTypes){
     return sequelize.define('alumno', {
-        id_alumno: {
-            allowNull: false,
-            autoIncrement: true,
-            primaryKey: true,
-            type: DataTypes.INTEGER
-        },
         nombre: {
             type: DataTypes.TEXT
         },
