@@ -1,8 +1,8 @@
 var copsiApp = angular.module('copsiApp', ['ngRoute', 'angularCSS']);
 copsiApp.config(function($routeProvider, $locationProvider){
     $routeProvider.when('/alumnos', {
-        templateUrl: '../main/views/alumnos.html',
-        css: '../css/data-table.css'
+        templateUrl: '../main/views/alumnos.html'
+        //,css: '../css/data-table.css'
     }).when('/biblioteca', {
         templateUrl: '../main/views/biblioteca.html'
     }).when('/cursos', {

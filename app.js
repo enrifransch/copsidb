@@ -17,6 +17,19 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.get('/', function(req, res){
+  res.sendFile('login.html', {root: __dirname + '/public/login/'});
+});
+
+app.get('/forbidden', function(req, res){
+  res.sendFile('forbidden.html', {root: __dirname + '/public/authorization'});
+});
+
+app.get('/main', function(req, res){
+  res.sendFile('landing.html', {root: __dirname + '/public/main/'});
+});
+
+//GET Methods
 app.get('/alumnos', function(req, res){
   db.alumno.findAll().then(function(alumnos) {
     res.json(alumnos);
@@ -24,22 +37,6 @@ app.get('/alumnos', function(req, res){
     res.status(500).send();
     console.log(er);
   });
-});
-
-app.get('/', function(req, res){
-  res.sendFile('login.html', {root: __dirname + '/public/login/'});
-});
-
-app.get('/forbidden', function(req, res){
-
-  res.sendFile('forbidden.html', {root: __dirname + '/public/authorization'});
-
-});
-
-app.get('/main', function(req, res){
-
-  res.sendFile('landing.html', {root: __dirname + '/public/main/'});
-  
 });
 
 //Loads the DB, force: true drops everything
