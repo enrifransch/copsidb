@@ -23,6 +23,8 @@ copsiApp.config(function($routeProvider, $locationProvider){
         templateUrl: '../main/views/alumnosAgregar.html'
     }).when('/alumnos/:id', {
         templateUrl: '../main/views/alumnosIndividual.html'
+    }).when('/alumnos/editar/:id', {
+        templateUrl: '../main/views/alumnosEditar.html'
     }).otherwise({redirectTo: '/main'
     });
 }).filter('startFrom', function(){

@@ -146,7 +146,7 @@ app.get('/libros', function(req, res){
 });
 
 app.get('/libros/:id', function(req, res){
-  var libroId = parseInt(re.params.id, 10);
+  var libroId = parseInt(req.params.id, 10);
   db.libro.findOne({
     where:{
       id: libroId
@@ -172,7 +172,7 @@ app.get('/talleresDH', function(req, res){
 });
 
 app.get('/talleresDH/:id', function(req, res){
-  var tallerDHId = parseInt(re.params.id, 10);
+  var tallerDHId = parseInt(req.params.id, 10);
   db.tallerDH.findOne({
     where:{
       id: tallerDHId
@@ -198,7 +198,7 @@ app.get('/talleresFS', function(req, res){
 });
 
 app.get('/talleresFS/:id', function(req, res){
-  var tallerFSId = parseInt(re.params.id, 10);
+  var tallerFSId = parseInt(req.params.id, 10);
   db.tallerFS.findOne({
     where:{
       id: tallerFSId
@@ -224,7 +224,7 @@ app.get('/inventario', function(req, res){
 });
 
 app.get('/inventario/:id', function(req, res){
-  var inventarioId = parseInt(re.params.id, 10);
+  var inventarioId = parseInt(req.params.id, 10);
   db.inventario.findOne({
     where:{
       id: inventarioId
@@ -338,6 +338,22 @@ app.post('/users/login', function (req, res) {
 		res.status(401).send();
 	});
 });
+
+//PUT Methods
+
+app.put('/alumnos/edit/:id', function(req, res){
+  var body = _.pick(req.body, 'nombre', 'apellidos', 'direccion', 'email', 'celular', 'telefono', 'fechaNac', 'sexo', 'escolaridad', 'referencias', 'hrsTerapia', 'cuota');
+  var alumnoId = parseInt(req.params.id, 10);
+  db.alumno.update(body, {
+    where: {
+      id: alumnoId
+    }
+  }).then(function(alumno){
+    res.json(alumno.toJSON);
+  }, function(err){
+    res.status(400).json(err);
+  });
+})
 
 //DELETE Methods
 app.delete('/users/login', /*middleware.requireAuthentication,*/ function(req, res){
