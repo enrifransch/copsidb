@@ -3,16 +3,10 @@ module.exports = function (sequelize, DataTypes){
         isbn: {
             type: DataTypes.TEXT
         },
-        nombre: {
-            type: DataTypes.TEXT
-        },
         titulo: {
             type: DataTypes.TEXT
         },
         autores: {
-            type: DataTypes.TEXT
-        },
-        nombre: {
             type: DataTypes.TEXT
         },
         genero: {

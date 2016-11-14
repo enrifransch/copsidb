@@ -1,4 +1,4 @@
-var copsiApp = angular.module('copsiApp', ['ngRoute', 'angularCSS']);
+var copsiApp = angular.module('copsiApp', ['ngRoute', 'angularCSS','ui.bootstrap']);
 copsiApp.config(function($routeProvider, $locationProvider){
     $routeProvider.when('/alumnos', {
         templateUrl: '../main/views/alumnos.html'
@@ -19,8 +19,20 @@ copsiApp.config(function($routeProvider, $locationProvider){
         templateUrl: '../main/views/talleres.html'
     }).when('/talleresfs', {
         templateUrl: '../main/views/talleres.html'
+    }).when('/alumnos/agregar', {
+        templateUrl: '../main/views/alumnosAgregar.html'
+    }).when('/alumnos/:id', {
+        templateUrl: '../main/views/alumnosIndividual.html'
+    }).otherwise({redirectTo: '/main'
     });
+}).filter('startFrom', function(){
+    return function(data, start){
+        if (!data || !data.length){ return; }
+        start =+ start;
+        return data.slice(start);
+    }
 });
+
 
 copsiApp.controller('bodyController', ['$scope','$rootScope', '$location',
     function($scope, $rootScope, $location){

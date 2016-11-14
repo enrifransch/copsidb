@@ -2,47 +2,7 @@
     <div class="table-title">
         <h3>Alumnos</h3>
     </div>
-    <!--
-    <table class="table-fill" ng-controller = "alumnosController">
-        <thead>
-            <tr>
-                <th class="text-left" ng-click="sort('id')">ID</th>
-                <th class="text-left" ng-click="sort('nombre')">Nombre</th>
-                <th class="text-left" ng-click="sort('apellidos')">Apellidos</th>
-                <th class="text-left" ng-click="sort('direccion')">Direccion</th>
-                <th class="text-left" ng-click="sort('email')">Email</th>
-                <th class="text-left" ng-click="sort('celular')">Celular</th>
-                <th class="text-left" ng-click="sort('telefono')">Telefono</th>
-                <th class="text-left" ng-click="sort('fechaNac')">Fecha Nac</th>
-                <th class="text-left" ng-click="sort('sexo')">Sexo</th>
-                <th class="text-left" ng-click="sort('escolaridad')">Escolaridad</th>
-                <th class="text-left" ng-click="sort('hrsTerapia')">Hrs Terapia</th>
-                <th class="text-left" ng-click="sort('cuota')">Cuota</th>
-            </tr>
-        </thead>
-        <tbody class="table-hover" ng-repeat="alumno in alumnos">
-            <tr>
-                <td class="text-left">{{alumno.id}}</td>
-                <td class="text-left">{{alumno.nombre}}</td>
-                <td class="text-left">{{alumno.apellidos}}</td>
-                <td class="text-left">{{alumno.direccion}}</td>
-                <td class="text-left">{{alumno.email}}</td>
-                <td class="text-left">{{alumno.celular}}</td>
-                <td class="text-left">{{alumno.telefono}}</td>
-                <td class="text-left">{{alumno.fechaNac}}</td>
-                <td class="text-left">{{alumno.sexo}}</td>
-                <td class="text-left">{{alumno.escolaridad}}</td>
-                <td class="text-left">{{alumno.hrsTerapia}}</td>
-                <td class="text-left">{{alumno.cuota}}</td>
-            </tr>
-        </tbody>
-        <pagination ng-model="currentPage" total-items="alumnos.length"
-                max-size="maxSize" boundary-links="true">
-                
-            </pagination>
-    </table>
-    -->
-    <div class="bs-component" ng-controller = "alumnosController">
+    <div class="bs-component" ng-controller="alumnosController">
         <form class="form-inline">
             <div class="form-group">
                 <label >Buscar</label>
@@ -89,7 +49,7 @@
                 </th>
             </thead>
             <tbody>
-                <tr ng-repeat="alumno in alumnos|orderBy:sortKey:reverse|filter:search">
+                <tr ng-repeat="alumno in alumnos|startFrom:(currentPage -1)*pageSize|limitTo:pageSize|orderBy:sortKey:reverse|filter:search" ng-dblclick="getAlumno(alumno)">
                     <td>{{alumno.id}}</td>
                     <td>{{alumno.nombre}}</td>
                     <td>{{alumno.apellidos}}</td>
@@ -97,7 +57,7 @@
                     <td>{{alumno.email}}</td>
                     <td>{{alumno.celular}}</td>
                     <td>{{alumno.telefono}}</td>
-                    <td>{{alumno.fechaNac}}</td>
+                    <td>{{alumno.fechaNac.slice(0, 10)}}</td>
                     <td>{{alumno.sexo}}</td>
                     <td>{{alumno.escolaridad}}</td>
                     <td>{{alumno.hrsTerapia}}</td>
@@ -105,5 +65,14 @@
                 </tr>
             </tbody>
         </table>
+        <!--
+        <uib-pagination
+            total-items="alumnos.length"
+            max-size="5"
+            items-per-page="itemsPerPage"
+            ng-model="currentPage"
+            class="pagination-sm">
+        </uib-pagination>
+        -->
     </div>
 </body>
