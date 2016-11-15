@@ -9,8 +9,11 @@ module.exports = function (sequelize, DataTypes){
         autores: {
             type: DataTypes.TEXT
         },
+        editorial: {
+            type: DataTypes.TEXT
+        },
         genero: {
-            type: DataTypes.INTEGER
+            type: DataTypes.TEXT
         },
         nPags: {
             type: DataTypes.INTEGER

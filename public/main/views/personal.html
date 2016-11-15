@@ -1,1 +1,82 @@
-<h1>personal</h1>
+<body>
+    <div class="table-title">
+        <h3>Personal</h3>
+    </div>
+    <div class="bs-component" ng-controller="personalController">
+        <form class="form-inline">
+            <div class="form-group">
+                <label >Buscar</label>
+                <input type="text" ng-model="search" class="form-control" placeholder="Search">
+            </div>
+        </form>
+        <table class="table table-striped table-hover">
+            <thead>
+                <th ng-click="sort('id')">ID
+                    <span ng-show="sortKey=='id'" ng-class="{'fa fa-sort-desc':reverse,'fa fa-sort-asc':!reverse}"></span>
+                </th>
+                <th ng-click="sort('nombre')">Nombre
+                    <span ng-show="sortKey=='nombre'" ng-class="{'fa fa-sort-desc':reverse,'fa fa-sort-asc':!reverse}"></span>
+                </th>
+                <th ng-click="sort('apellidos')">Apellidos
+                    <span ng-show="sortKey=='apellidos'" ng-class="{'fa fa-sort-desc':reverse,'fa fa-sort-asc':!reverse}"></span>
+                </th>
+                <th ng-click="sort('puesto')">Puesto
+                    <span ng-show="sortKey=='puesto'" ng-class="{'fa fa-sort-desc':reverse,'fa fa-sort-asc':!reverse}"></span>
+                </th>
+                <th ng-click="sort('direccion')">Direccion
+                    <span ng-show="sortKey=='direccion'" ng-class="{'fa fa-sort-desc':reverse,'fa fa-sort-asc':!reverse}"></span>
+                </th>
+                <th ng-click="sort('email')">Email
+                    <span ng-show="sortKey=='email'" ng-class="{'fa fa-sort-desc':reverse,'fa fa-sort-asc':!reverse}"></span>
+                </th>
+                <th ng-click="sort('celular')">Celular
+                    <span ng-show="sortKey=='celular'" ng-class="{'fa fa-sort-desc':reverse,'fa fa-sort-asc':!reverse}"></span>
+                </th>
+                <th ng-click="sort('telefono')">Telefono
+                    <span ng-show="sortKey=='telefono'" ng-class="{'fa fa-sort-desc':reverse,'fa fa-sort-asc':!reverse}"></span>
+                </th>
+                <th ng-click="sort('fechaNac')">Fecha Nac
+                    <span ng-show="sortKey=='fechaNac'" ng-class="{'fa fa-sort-desc':reverse,'fa fa-sort-asc':!reverse}"></span>
+                </th>
+                <th ng-click="sort('sexo')">Sexo
+                    <span ng-show="sortKey=='sexo'" ng-class="{'fa fa-sort-desc':reverse,'fa fa-sort-asc':!reverse}"></span>
+                </th>
+                <th ng-click="sort('escolaridad')">Escolaridad
+                    <span ng-show="sortKey=='escolaridad'" ng-class="{'fa fa-sort-desc':reverse,'fa fa-sort-asc':!reverse}"></span>
+                </th>
+                <th ng-click="sort('hrsTerapia')">Hrs Terapia
+                    <span ng-show="sortKey=='hrsTerapia'" ng-class="{'fa fa-sort-desc':reverse,'fa fa-sort-asc':!reverse}"></span>
+                </th>
+                <th ng-click="sort('cuota')">Cuota
+                    <span ng-show="sortKey=='cuota'" ng-class="{'fa fa-sort-desc':reverse,'fa fa-sort-asc':!reverse}"></span>
+                </th>
+            </thead>
+            <tbody>
+                <tr ng-repeat="persona in personal|startFrom:(currentPage -1)*pageSize|limitTo:pageSize|orderBy:sortKey:reverse|filter:search" ng-dblclick="getPersonal(persona)">
+                    <td>{{persona.id}}</td>
+                    <td>{{persona.nombre}}</td>
+                    <td>{{persona.apellidos}}</td>
+                    <td>{{persona.puesto}}</td>
+                    <td>{{persona.direccion}}</td>
+                    <td>{{persona.email}}</td>
+                    <td>{{persona.celular}}</td>
+                    <td>{{persona.telefono}}</td>
+                    <td>{{persona.fechaNac.slice(0, 10)}}</td>
+                    <td>{{persona.sexo}}</td>
+                    <td>{{persona.escolaridad}}</td>
+                    <td>{{persona.hrsTerapia}}</td>
+                    <td>{{persona.cuota}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <!--
+        <uib-pagination
+            total-items="alumnos.length"
+            max-size="5"
+            items-per-page="itemsPerPage"
+            ng-model="currentPage"
+            class="pagination-sm">
+        </uib-pagination>
+        -->
+    </div>
+</body>

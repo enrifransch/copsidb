@@ -1,8 +1,8 @@
 <body>
     <div class="table-title">
-        <h3>Inventario</h3>
+        <h3>Talleres Fin de Semana</h3>
     </div>
-    <div class="bs-component" ng-controller="inventarioController">
+    <div class="bs-component" ng-controller="talleresFSController">
         <form class="form-inline">
             <div class="form-group">
                 <label >Buscar</label>
@@ -17,24 +17,15 @@
                 <th ng-click="sort('nombre')">Nombre
                     <span ng-show="sortKey=='nombre'" ng-class="{'fa fa-sort-desc':reverse,'fa fa-sort-asc':!reverse}"></span>
                 </th>
-                <th ng-click="sort('cantidad')">Cantidad
-                    <span ng-show="sortKey=='cantidad'" ng-class="{'fa fa-sort-desc':reverse,'fa fa-sort-asc':!reverse}"></span>
-                </th>
-                <th ng-click="sort('tipo')">Tipo
-                    <span ng-show="sortKey=='tipo'" ng-class="{'fa fa-sort-desc':reverse,'fa fa-sort-asc':!reverse}"></span>
-                </th>
-                <th ng-click="sort('comentarios')">Comentarios
-                    <span ng-show="sortKey=='comentarios'" ng-class="{'fa fa-sort-desc':reverse,'fa fa-sort-asc':!reverse}"></span>
+                <th ng-click="sort('costo')">Costo
+                    <span ng-show="sortKey=='costo'" ng-class="{'fa fa-sort-desc':reverse,'fa fa-sort-asc':!reverse}"></span>
                 </th>
             </thead>
             <tbody>
-                <tr ng-repeat="item in inventario|startFrom:(currentPage -1)*pageSize|limitTo:pageSize|orderBy:sortKey:reverse|filter:search" ng-dblclick="getInventario(item)">
-                    <td>{{item.id}}</td>
-                    <td>{{item.nombre}}</td>
-                    <td>{{item.cantidad}}</td>
-                    <td>{{item.tipo}}</td>
-                    <td>{{item.comentarios}}</td>
-                    <td>{{item.genero}}</td>
+                <tr ng-repeat="taller in talleres|startFrom:(currentPage -1)*pageSize|limitTo:pageSize|orderBy:sortKey:reverse|filter:search" ng-dblclick="getTaller(taller)">
+                    <td>{{taller.id}}</td>
+                    <td>{{taller.nombre}}</td>
+                    <td>{{taller.costo}}</td>
                 </tr>
             </tbody>
         </table>

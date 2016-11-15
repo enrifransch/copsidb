@@ -268,7 +268,7 @@ app.post('/cursos', function(req, res){
   });
 });
 
-app.post('/diplomado', function(req, res){
+app.post('/diplomados', function(req, res){
   var body = _.pick(req.body, 'nombre', 'aval', 'costo');
   db.diplomado.create(body).then(function(diplomado){
     res.json(diplomado.toJSON);
@@ -277,8 +277,8 @@ app.post('/diplomado', function(req, res){
   });
 });
 
-app.post('/tallerDH', function(req, res){
-  var tallerDH = _.pick(req.body, 'nombre', 'costo');
+app.post('/talleresDH', function(req, res){
+  var body = _.pick(req.body, 'nombre', 'costo');
   db.tallerDH.create(body).then(function(tallerDH){
     res.json(tallerDH.toJSON);
   }, function(err){
@@ -286,8 +286,8 @@ app.post('/tallerDH', function(req, res){
   });
 });
 
-app.post('/tallerFS', function(req, res){
-  var tallerFS = _.pick(req.body, 'nombre', 'costo');
+app.post('/talleresFS', function(req, res){
+  var body = _.pick(req.body, 'nombre', 'costo');
   db.tallerFS.create(body).then(function(tallerFS){
     res.json(tallerFS.toJSON);
   }, function(err){
@@ -296,7 +296,7 @@ app.post('/tallerFS', function(req, res){
 });
 
 app.post('/inventario', function(req, res){
-  var inventario = _.pick(req.body, 'nombre', 'cantidad', 'tipo', 'comentarios');
+  var body = _.pick(req.body, 'nombre', 'cantidad', 'tipo', 'comentarios');
   db.inventario.create(body).then(function(inventario){
     res.json(inventario.toJSON);
   }, function(err){
@@ -305,14 +305,13 @@ app.post('/inventario', function(req, res){
 });
 
 app.post('/libros', function(req, res){
-  var libro = _.pick(req.body, 'isbn', 'titulo', 'autores', 'genero', 'nPags', 'existencia', 'comentarios');
+  var body = _.pick(req.body, 'isbn', 'titulo', 'autores', 'editorial', 'genero', 'nPags', 'existencia', 'comentarios');
   db.libro.create(body).then(function(libro){
     res.json(libro.toJSON);
   }, function(err){
     res.status(400).json(err);
   });
 });
-
 
 app.post('/users', function (req, res) {
 	var body = _.pick(req.body, 'username', 'password');

@@ -5,6 +5,8 @@ copsiApp.config(function($routeProvider, $locationProvider){
         //,css: '../css/data-table.css'
     }).when('/biblioteca', {
         templateUrl: '../main/views/biblioteca.html'
+    }).when('/biblioteca/agregar', {
+        templateUrl: '../main/views/bibliotecaAgregar.html'
     }).when('/cursos', {
         templateUrl: '../main/views/cursos.html'
     }).when('/', {
@@ -15,10 +17,10 @@ copsiApp.config(function($routeProvider, $locationProvider){
         templateUrl: '../main/views/inventario.html'
     }).when('/personal', {
         templateUrl: '../main/views/personal.html'
-    }).when('/talleresdh', {
-        templateUrl: '../main/views/talleres.html'
-    }).when('/talleresfs', {
-        templateUrl: '../main/views/talleres.html'
+    }).when('/talleresDH', {
+        templateUrl: '../main/views/talleresDH.html'
+    }).when('/talleresFS', {
+        templateUrl: '../main/views/talleresFS.html'
     }).when('/alumnos/agregar', {
         templateUrl: '../main/views/alumnosAgregar.html'
     }).when('/alumnos/:id', {

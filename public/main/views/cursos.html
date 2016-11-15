@@ -1,1 +1,42 @@
-<h1>cursos</h1>
+<body>
+    <div class="table-title">
+        <h3>Cursos</h3>
+    </div>
+    <div class="bs-component" ng-controller="cursosController">
+        <form class="form-inline">
+            <div class="form-group">
+                <label >Buscar</label>
+                <input type="text" ng-model="search" class="form-control" placeholder="Search">
+            </div>
+        </form>
+        <table class="table table-striped table-hover">
+            <thead>
+                <th ng-click="sort('id')">ID
+                    <span ng-show="sortKey=='id'" ng-class="{'fa fa-sort-desc':reverse,'fa fa-sort-asc':!reverse}"></span>
+                </th>
+                <th ng-click="sort('nombre')">Nombre
+                    <span ng-show="sortKey=='nombre'" ng-class="{'fa fa-sort-desc':reverse,'fa fa-sort-asc':!reverse}"></span>
+                </th>
+                <th ng-click="sort('costo')">Costo
+                    <span ng-show="sortKey=='costo'" ng-class="{'fa fa-sort-desc':reverse,'fa fa-sort-asc':!reverse}"></span>
+                </th>
+            </thead>
+            <tbody>
+                <tr ng-repeat="curso in cursos|startFrom:(currentPage -1)*pageSize|limitTo:pageSize|orderBy:sortKey:reverse|filter:search" ng-dblclick="getCurso(curso)">
+                    <td>{{curso.id}}</td>
+                    <td>{{curso.nombre}}</td>
+                    <td>{{curso.costo}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <!--
+        <uib-pagination
+            total-items="alumnos.length"
+            max-size="5"
+            items-per-page="itemsPerPage"
+            ng-model="currentPage"
+            class="pagination-sm">
+        </uib-pagination>
+        -->
+    </div>
+</body>
