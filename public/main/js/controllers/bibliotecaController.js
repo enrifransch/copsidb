@@ -11,13 +11,25 @@ angular.module('copsiApp')
         $location.path('/biblioteca/' + req.id);
     };
 }])
-.controller('bibliotecaIndividualController', ['$scope', '$http', '$routeParams', '$location', function($scope, $http, $routeParams, $location){
+.controller('bibliotecaIndividualController', ['$scope', '$http', '$routeParams', '$location', '$window', function($scope, $http, $routeParams, $location, $window){
     $http.get('libros/'+$routeParams.id).success(function(data){
         $scope.libro = data;
     });
     $scope.editarLibro = function(){
         $location.path('/biblioteca/editar/' + $routeParams.id);
-    }
+    };
+    $scope.eliminarLibro = function(){
+        del = $window.confirm('¿Seguro que desea eliminar a este libro?');
+        if(del){
+            $http.delete('libro/'+$routeParams.id).success(function(data){
+                $window.alert("Eliminado con exito");
+                $scope.goBack();
+            });
+        }
+    };
+    $scope.goBack = function(){
+        $location.path('/biblioteca');
+    };
 }])
 .controller('bibliotecaEditarController', ['$scope', '$http', '$routeParams', '$location', '$window', function($scope, $http, $routeParams, $location, $window){
     $http.get('libros/'+$routeParams.id).success(function(data){
@@ -37,13 +49,12 @@ angular.module('copsiApp')
         $http.put('/biblioteca/edit/'+$routeParams.id, data).success(function(data, status){
             if(status===200){
                 $window.alert('Actualizado con éxito');
-                location.path('biblioteca/');
+                $scope.goBack();
             } else {
                 $window.alert('Error al actualizar');
             }
         }, function(er){
             $window.alert('Error al actualizar');
-            console.log(er);
         });
     };  
     $scope.goBack = function(){
@@ -65,9 +76,13 @@ angular.module('copsiApp')
         $http.post('/libros', data).success(function(data, status){
             if(status===200){
                $window.alert('Libro creado con éxito');
+               $scope.goBack();
             } else {
                 $window.alert('Error al crear libro');
             }
         });
+    };
+    $scope.goBack = function(){
+        $location.path('/biblioteca');
     };
 }]);

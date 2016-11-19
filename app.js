@@ -461,6 +461,110 @@ app.delete('/users/login', /*middleware.requireAuthentication,*/ function(req, r
 	});
 });
 
+app.delete('/alumno/:id', function(req, res){
+  var ID = parseInt(req.params.id, 10);
+  db.alumno.destroy({
+    where: {
+      id: ID
+    }
+  }).then(function(){
+    res.status(204).send();
+  }).catch(function(){
+    res.status(500).send();
+  });
+});
+
+app.delete('/libro/:id', function(req, res){
+  var ID = parseInt(req.params.id, 10);
+  db.libro.destroy({
+    where: {
+      id: ID
+    }
+  }).then(function(){
+    res.status(204).send();
+  }).catch(function(){
+    res.status(500).send();
+  });
+});
+
+app.delete('/curso/:id', function(req, res){
+  var ID = parseInt(req.params.id, 10);
+  db.curso.destroy({
+    where: {
+      id: ID
+    }
+  }).then(function(){
+    res.status(204).send();
+  }).catch(function(){
+    res.status(500).send();
+  });
+});
+
+app.delete('/diplomado/:id', function(req, res){
+  var ID = parseInt(req.params.id, 10);
+  db.diplomado.destroy({
+    where: {
+      id: ID
+    }
+  }).then(function(){
+    res.status(204).send();
+  }).catch(function(){
+    res.status(500).send();
+  });
+});
+
+app.delete('/inventario/:id', function(req, res){
+  var ID = parseInt(req.params.id, 10);
+  db.inventario.destroy({
+    where: {
+      id: ID
+    }
+  }).then(function(){
+    res.status(204).send();
+  }).catch(function(){
+    res.status(500).send();
+  });
+});
+
+app.delete('/personal/:id', function(req, res){
+  var ID = parseInt(req.params.id, 10);
+  db.personal.destroy({
+    where: {
+      id: ID
+    }
+  }).then(function(){
+    res.status(204).send();
+  }).catch(function(){
+    res.status(500).send();
+  });
+});
+
+app.delete('/tallerDH/:id', function(req, res){
+  var ID = parseInt(req.params.id, 10);
+  db.tallerDH.destroy({
+    where: {
+      id: ID
+    }
+  }).then(function(){
+    res.status(204).send();
+  }).catch(function(){
+    res.status(500).send();
+  });
+});
+
+app.delete('/tallerFS/:id', function(req, res){
+  var ID = parseInt(req.params.id, 10);
+  db.tallerFS.destroy({
+    where: {
+      id: ID
+    }
+  }).then(function(){
+    res.status(204).send();
+  }).catch(function(){
+    res.status(500).send();
+  });
+});
+
 //Loads the DB, force: true drops everything
 db.sequelize.sync({/*force: true*/}).then(function(){
   

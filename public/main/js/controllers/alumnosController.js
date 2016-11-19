@@ -11,12 +11,24 @@ angular.module('copsiApp')
         $location.path('/alumnos/' + req.id);
     };
 }])
-.controller('alumnosIndividualController', ['$scope', '$http', '$routeParams', '$location', function($scope, $http, $routeParams, $location){
+.controller('alumnosIndividualController', ['$scope', '$http', '$routeParams', '$location', '$window', function($scope, $http, $routeParams, $location, $window){
     $http.get('alumnos/'+$routeParams.id).success(function(data){
         $scope.alumno = data;
     });
     $scope.editarAlumno = function(){
         $location.path('/alumnos/editar/' + $routeParams.id);
+    };
+    $scope.eliminarAlumno = function(){
+        del = $window.confirm('¿Seguro que desea eliminar este alumno?');
+        if(del){
+            $http.delete('alumno/'+$routeParams.id).success(function(data){
+                $window.alert("Eliminado con exito");
+                $scope.goBack();
+            });
+        }
+    };
+    $scope.goBack = function(){
+        $location.path('/alumnos');
     };
 }])
 .controller('alumnosEditarController', ['$scope', '$http', '$routeParams', '$location', '$window', function($scope, $http, $routeParams, $location, $window){
@@ -41,7 +53,7 @@ angular.module('copsiApp')
         $http.put('/alumnos/edit/'+$routeParams.id, data).success(function(data, status){
             if(status===200){
                 $window.alert('Alumno actualizado con éxito');
-                $location.path('alumnos/');
+                $scope.goBack();
             } else {
                 $window.alert('Error al actualizar alumno');
             }
@@ -49,7 +61,7 @@ angular.module('copsiApp')
     };  
     $scope.goBack = function(){
         $location.path('/alumnos/'+$routeParams.id);
-    } 
+    };
 }])
 .controller('alumnosAgregarController', ['$scope', '$http', '$routeParams', '$location', '$window', function($scope, $http, $routeParams, $location, $window){
     $scope.addAlumno = function(){
@@ -70,9 +82,13 @@ angular.module('copsiApp')
         $http.post('/alumnos', data).success(function(data, status){
             if(status===200){
                 $window.alert('Alumno creado con éxito');
+                $scope.goBack();
             } else {
                 $window.alert('Alumno creado con éxito');
             }
         });
+    };
+    $scope.goBack = function(){
+        $location.path('/alumnos');
     };
 }]);

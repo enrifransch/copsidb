@@ -11,13 +11,25 @@ angular.module('copsiApp')
         $location.path('/inventario/' + req.id);
     };
 }])
-.controller('inventarioIndividualController', ['$scope', '$http', '$routeParams', '$location', function($scope, $http, $routeParams, $location){
+.controller('inventarioIndividualController', ['$scope', '$http', '$routeParams', '$location', '$window', function($scope, $http, $routeParams, $location, $window){
     $http.get('inventario/'+$routeParams.id).success(function(data){
         $scope.inventario = data;
     });
     $scope.editarInventario = function(){
         $location.path('/inventario/editar/' + $routeParams.id);
-    }
+    };
+    $scope.eliminarInventario = function(){
+        del = $window.confirm('¿Seguro que desea eliminar este objeto?');
+        if(del){
+            $http.delete('inventario/'+$routeParams.id).success(function(data){
+                $window.alert("Eliminado con exito");
+                $scope.goBack();
+            });
+        }
+    };
+    $scope.goBack = function(){
+        $location.path('/inventario');
+    };
 }])
 .controller('inventarioEditarController', ['$scope', '$http', '$routeParams', '$location', '$window', function($scope, $http, $routeParams, $location, $window){
     $http.get('inventario/'+$routeParams.id).success(function(data){
@@ -33,7 +45,7 @@ angular.module('copsiApp')
         $http.put('/inventario/edit/'+$routeParams.id, data).success(function(data, status){
             if(status===200){
                 $window.alert('Actualizado con éxito');
-                location.path('inventario/');
+                $scope.goBack();
             } else {
                 $window.alert('Error al actualizar');
             }
@@ -57,9 +69,13 @@ angular.module('copsiApp')
         $http.post('/inventario', data).success(function(data, status){
             if(status===200){
                 $window.alert('Objeto creado con éxito');
+                $scope.goBack();
             } else {
                 $window.alert('Error al crear objeto');
             }
         });
+    };
+    $scope.goBack = function(){
+        $location.path('/inventario');
     };
 }]);

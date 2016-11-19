@@ -11,7 +11,13 @@
     </div>
     <div class="form-group">
         <label>Tipo:</label>
-        <input type="text" name="tipo" ng-model="inventario.tipo">
+        <select name="tipo" ng-model="inventario.tipo">
+            <option value="Electronico">Electronico</option>
+            <option value="Mobiliario">Mobiliario</option>
+            <option value="Papeleria">Papeleria</option>
+            <option value="Limpieza">Limpieza</option>
+            <option value="Otro">Otro</option>
+        </select>
     </div>
     <div class="form-group">
         <label>Comentarios:</label>

@@ -11,13 +11,25 @@ angular.module('copsiApp')
         $location.path('/talleresDH/' + req.id);
     };
 }])
-.controller('talleresDHIndividualController', ['$scope', '$http', '$routeParams', '$location', function($scope, $http, $routeParams, $location){
+.controller('talleresDHIndividualController', ['$scope', '$http', '$routeParams', '$location', '$window', function($scope, $http, $routeParams, $location, $window){
     $http.get('talleresDH/'+$routeParams.id).success(function(data){
         $scope.tallerDH= data;
     });
     $scope.editarTallerDH= function(){
         $location.path('/talleresDH/editar/' + $routeParams.id);
     }
+    $scope.eliminarTaller = function(){
+        del = $window.confirm('¿Seguro que desea eliminar este taller?');
+        if(del){
+            $http.delete('tallerDH/'+$routeParams.id).success(function(data){
+                $window.alert("Eliminado con exito");
+                $scope.goBack();
+            });
+        }
+    };
+    $scope.goBack = function(){
+        $location.path('/talleresDH');
+    };
 }])
 .controller('talleresDHEditarController', ['$scope', '$http', '$routeParams', '$location', '$window', function($scope, $http, $routeParams, $location, $window){
     $http.get('talleresDH/'+$routeParams.id).success(function(data){
@@ -31,7 +43,7 @@ angular.module('copsiApp')
         $http.put('/talleresDH/edit/'+$routeParams.id, data).success(function(data, status){
             if(status===200){
                 $window.alert('Actualizado con éxito');
-                location.path('talleresDH/');
+                $scope.goBack();
             } else {
                 $window.alert('Error al actualizar');
             }
@@ -53,10 +65,14 @@ angular.module('copsiApp')
         $http.post('/talleresDH', data).success(function(data, status){
             if(status===200){
                 $window.alert('Taller creado con éxito');
+                $scope.goBack();
             } else {
                 $window.alert('Error al crear taller');
             }
         });
+    };
+    $scope.goBack = function(){
+        $location.path('/talleresDH');
     };
 }])
 .controller('talleresFSController', ['$scope', '$http', '$location', function($scope, $http, $location){
@@ -71,13 +87,25 @@ angular.module('copsiApp')
         $location.path('/talleresFS/' + req.id);
     };
 }])
-.controller('talleresFSIndividualController', ['$scope', '$http', '$routeParams', '$location', function($scope, $http, $routeParams, $location){
+.controller('talleresFSIndividualController', ['$scope', '$http', '$routeParams', '$location', '$window', function($scope, $http, $routeParams, $location, $window){
     $http.get('talleresFS/'+$routeParams.id).success(function(data){
         $scope.tallerFS= data;
     });
     $scope.editarTallerFS= function(){
         $location.path('/talleresFS/editar/' + $routeParams.id);
-    }
+    };
+    $scope.eliminarTaller = function(){
+        del = $window.confirm('¿Seguro que desea eliminar este taller?');
+        if(del){
+            $http.delete('tallerFS/'+$routeParams.id).success(function(data){
+                $window.alert("Eliminado con exito");
+                $scope.goBack();
+            });
+        }
+    };
+    $scope.goBack = function(){
+        $location.path('/talleresFS');
+    };
 }])
 .controller('talleresFSEditarController', ['$scope', '$http', '$routeParams', '$location', '$window', function($scope, $http, $routeParams, $location, $window){
     $http.get('talleresFS/'+$routeParams.id).success(function(data){
@@ -91,7 +119,7 @@ angular.module('copsiApp')
         $http.put('/talleresFS/edit/'+$routeParams.id, data).success(function(data, status){
             if(status===200){
                 $window.alert('Actualizado con éxito');
-                location.path('talleresFS/');
+                $scope.goBack();
             } else {
                 $window.alert('Error al actualizar');
             }
@@ -113,9 +141,13 @@ angular.module('copsiApp')
         $http.post('/talleresFS', data).success(function(data, status){
             if(status===200){
                 $window.alert('Taller creado con éxito');
+                $scope.goBack();
             } else {
                 $window.alert('Error al crear taller');
             }
         });
+    };
+    $scope.goBack = function(){
+        $location.path('/talleresFS');
     };
 }]);

@@ -11,13 +11,25 @@ angular.module('copsiApp')
         $location.path('/diplomados/' + req.id);
     };
 }])
-.controller('diplomadosIndividualController', ['$scope', '$http', '$routeParams', '$location', function($scope, $http, $routeParams, $location){
+.controller('diplomadosIndividualController', ['$scope', '$http', '$routeParams', '$location', '$window', function($scope, $http, $routeParams, $location, $window){
     $http.get('diplomados/'+$routeParams.id).success(function(data){
         $scope.diplomado = data;
     });
     $scope.editarDiplomado = function(){
         $location.path('/diplomados/editar/' + $routeParams.id);
-    }
+    };
+    $scope.eliminarDiplomado = function(){
+        del = $window.confirm('¿Seguro que desea eliminar este diplomado?');
+        if(del){
+            $http.delete('diplomado/'+$routeParams.id).success(function(data){
+                $window.alert("Eliminado con exito");
+                $scope.goBack();
+            });
+        }
+    };
+    $scope.goBack = function(){
+        $location.path('/diplomados');
+    };
 }])
 .controller('diplomadosEditarController', ['$scope', '$http', '$routeParams', '$location', '$window', function($scope, $http, $routeParams, $location, $window){
     $http.get('diplomados/'+$routeParams.id).success(function(data){
@@ -32,7 +44,7 @@ angular.module('copsiApp')
         $http.put('/diplomados/edit/'+$routeParams.id, data).success(function(data, status){
             if(status===200){
                 $window.alert('Actualizado con éxito');
-                location.path('diplomados/');
+                $scope.goBack();
             } else {
                 $window.alert('Error al actualizar');
             }
@@ -55,9 +67,13 @@ angular.module('copsiApp')
         $http.post('/diplomados', data).success(function(data, status){
             if(status===200){
                 $window.alert('Diplomado creado con éxito');
+                $scope.goBack();
             } else {
                 $window.alert('Error al crear Diplomado');
             }
         });
+    };
+    $scope.goBack = function(){
+        $location.path('/diplomados');
     };
 }]);

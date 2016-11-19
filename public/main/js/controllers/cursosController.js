@@ -11,13 +11,25 @@ angular.module('copsiApp')
         $location.path('/cursos/' + req.id);
     };
 }])
-.controller('cursosIndividualController', ['$scope', '$http', '$routeParams', '$location', function($scope, $http, $routeParams, $location){
+.controller('cursosIndividualController', ['$scope', '$http', '$routeParams', '$location', '$window', function($scope, $http, $routeParams, $location, $window){
     $http.get('cursos/'+$routeParams.id).success(function(data){
         $scope.curso = data;
     });
     $scope.editarCurso = function(){
         $location.path('/cursos/editar/' + $routeParams.id);
-    }
+    };
+    $scope.eliminarCurso = function(){
+        del = $window.confirm('¿Seguro que desea eliminar a este curso?');
+        if(del){
+            $http.delete('curso/'+$routeParams.id).success(function(data){
+                $window.alert("Eliminado con exito");
+                $scope.goBack();
+            });
+        }
+    };
+    $scope.goBack = function(){
+        $location.path('/cursos');
+    };
 }])
 .controller('cursosEditarController', ['$scope', '$http', '$routeParams', '$location', '$window', function($scope, $http, $routeParams, $location, $window){
     $http.get('cursos/'+$routeParams.id).success(function(data){
@@ -31,7 +43,7 @@ angular.module('copsiApp')
         $http.put('/cursos/edit/'+$routeParams.id, data).success(function(data, status){
             if(status===200){
                 $window.alert('Actualizado con éxito');
-                location.path('cursos/');
+                $scope.goBack();
             } else {
                 $window.alert('Error al actualizar');
             }
@@ -53,9 +65,13 @@ angular.module('copsiApp')
         $http.post('/cursos', data).success(function(data, status){
             if(status===200){
                 $window.alert('Curso creado con éxito');
+                $scope.goBack();
             } else {
                 $window.alert('Error al crear curso');
             }
         });
+    };
+    $scope.goBack = function(){
+        $location.path('/cursos');
     };
 }]);

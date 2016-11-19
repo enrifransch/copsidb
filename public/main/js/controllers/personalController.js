@@ -11,12 +11,24 @@ angular.module('copsiApp')
         $location.path('/personal/' + req.id);
     };
 }])
-.controller('personalIndividualController', ['$scope', '$http', '$routeParams', '$location', function($scope, $http, $routeParams, $location){
+.controller('personalIndividualController', ['$scope', '$http', '$routeParams', '$location', '$window', function($scope, $http, $routeParams, $location, $window){
     $http.get('personal/'+$routeParams.id).success(function(data){
         $scope.personal = data;
     });
     $scope.editarPersonal = function(){
         $location.path('/personal/editar/' + $routeParams.id);
+    };
+    $scope.eliminarPersonal = function(){
+        del = $window.confirm('¿Seguro que desea eliminar a esta persona?');
+        if(del){
+            $http.delete('personal/'+$routeParams.id).success(function(data){
+                $window.alert("Eliminado con exito");
+                $scope.goBack();
+            });
+        }
+    };
+    $scope.goBack = function(){
+        $location.path('/personal');
     };
 }])
 .controller('personalEditarController', ['$scope', '$http', '$routeParams', '$location', '$window', function($scope, $http, $routeParams, $location, $window){
@@ -42,7 +54,7 @@ angular.module('copsiApp')
         $http.put('/personal/edit/'+$routeParams.id, data).success(function(data, status){
             if(status===200){
                 $window.alert('Actualizado con éxito');
-                location.path('personal/');
+                $scope.goBack();
             } else {
                 $window.alert('Error al actualizar');
             }
@@ -72,9 +84,13 @@ angular.module('copsiApp')
         $http.post('/personal', data).success(function(data, status){
             if(status===200){
                 $window.alert('Creado con éxito');
+                $scope.goBack();
             } else {
                 $window.alert('Error al crear');
             }
         });
+    };
+    $scope.goBack = function(){
+        $location.path('/personal');
     };
 }]);
