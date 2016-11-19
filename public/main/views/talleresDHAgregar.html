@@ -1,0 +1,15 @@
+<div ng-controller="talleresDHAgregarController">
+    <h2>Perfil de taller DH</h2>
+    <form ng-submit="addTallerDH()">
+    <div class="form-group">
+        <label>Nombre:</label>
+        <input type="text" name="nombre" ng-model="nombre" >
+    </div>
+    <div class="form-group">
+        <label>Costo:</label>
+        <input type="text" name="costo" ng-model="costo">
+    </div>
+    <button type="submit" class="btn btn-default">Ingresar</button>
+    <a class="btn btn-danger" href="#/talleresDH/agregar">Cancelar</a>
+    </form>
+</div>

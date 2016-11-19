@@ -352,7 +352,105 @@ app.put('/alumnos/edit/:id', function(req, res){
   }, function(err){
     res.status(400).json(err);
   });
-})
+});
+
+app.put('/personal/edit/:id', function(req, res){
+  var body = _.pick(req.body, 'nombre', 'apellidos', 'puesto', 'direccion', 'email', 'celular', 'telefono', 'fechaNac', 'sexo', 'escolaridad', 'referencias', 'hrsTerapia', 'cuota');
+  var personalId = parseInt(req.params.id, 10);
+  db.personal.update(body, {
+    where: {
+      id: personalId
+    }
+  }).then(function(personal){
+    res.json(personal.toJSON);
+  }, function(err){
+    res.status(400).json(err);
+  });
+});
+
+app.put('/cursos/edit/:id', function(req, res){
+  var body = _.pick(req.body, 'nombre', 'costo');
+  var cursoId = parseInt(req.params.id, 10);
+  db.curso.update(body, {
+    where: {
+      id: cursoId
+    }
+  }).then(function(curso){
+    res.json(curso.toJSON);
+  }, function(err){
+    res.status(400).json(err);
+  });
+});
+
+app.put('/diplomados/edit/:id', function(req, res){
+  var body = _.pick(req.body, 'nombre', 'aval', 'costo');
+  var diplomadoId = parseInt(req.params.id, 10);
+  db.diplomado.update(body, {
+    where: {
+      id: diplomadoId
+    }
+  }).then(function(diplomado){
+    res.json(diplomado.toJSON);
+  }, function(err){
+    res.status(400).json(err);
+  });
+});
+
+app.put('/talleresDH/edit/:id', function(req, res){
+  var body = _.pick(req.body, 'nombre', 'costo');
+  var tallerId = parseInt(req.params.id, 10);
+  db.tallerDH.update(body, {
+    where: {
+      id: tallerId
+    }
+  }).then(function(taller){
+    res.json(taller.toJSON);
+  }, function(err){
+    res.status(400).json(err);
+  });
+});
+
+app.put('/talleresFS/edit/:id', function(req, res){
+  var body = _.pick(req.body, 'nombre', 'costo');
+  var tallerId = parseInt(req.params.id, 10);
+  db.tallerFS.update(body, {
+    where: {
+      id: tallerId
+    }
+  }).then(function(taller){
+    res.json(taller.toJSON);
+  }, function(err){
+    res.status(400).json(err);
+  });
+});
+
+app.put('/inventario/edit/:id', function(req, res){
+  var body = _.pick(req.body, 'nombre', 'cantidad', 'tipo', 'comentarios');
+  var inventarioId = parseInt(req.params.id, 10);
+  db.inventario.update(body, {
+    where: {
+      id: inventarioId
+    }
+  }).then(function(inventario){
+    res.json(inventario.toJSON);
+  }, function(err){
+    res.status(400).json(err);
+  });
+});
+
+app.put('/biblioteca/edit/:id', function(req, res){
+  var body = _.pick(req.body, 'isbn', 'titulo', 'autores', 'editorial', 'genero', 'nPags', 'existencia', 'comentarios');
+  var libroId = parseInt(req.params.id, 10);
+  db.libro.update(body, {
+    where: {
+      id: libroId
+    }
+  }).then(function(libro){
+    res.json(libro.toJSON);
+  }, function(err){
+    res.status(400).json(err);
+  });
+});
 
 //DELETE Methods
 app.delete('/users/login', /*middleware.requireAuthentication,*/ function(req, res){

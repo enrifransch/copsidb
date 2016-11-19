@@ -1,0 +1,73 @@
+<div ng-controller="personalAgregarController">
+    <h2>Perfil de Empleado</h2>
+    <form ng-submit="addPersonal()">
+    <div class="form-group">
+        <label>Nombre:</label>
+        <input type="text" name="nombre" ng-model="nombre" >
+    </div>
+    <div class="form-group">
+        <label>Apellidos:</label>
+        <input type="text" name="apellidos" ng-model="apellidos">
+    </div>
+    <div class="form-group">
+        <label>Puesto:</label>
+        <select name="puesto" ng-model="puesto">
+            <option value="Maestro">Maestro</option>
+            <option value="Intendencia">Intendencia</option>
+            <option value="Administracion">Administracion</option>
+            <option value="Otro">Otro</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Direccion:</label>
+        <input type="text"  name="direccion" ng-model="direccion">
+    </div>
+    <div class="form-group">
+        <label>Email:</label>
+        <input type="text"  name="email" ng-model="email" >
+    </div>
+    <div class="form-group">
+        <label>Celular:</label>
+        <input type="text"  name="celular" ng-model="celular" >
+    </div>
+    <div class="form-group">
+        <label>Telefono:</label>
+        <input type="text"  name="telefono" ng-model="telefono" >
+    </div>
+    <div class="form-group">
+        <label>Fecha de Nacimiento:</label>
+        <input type="text"  name="nacimiento" ng-model="fechaNac" >
+    </div>
+    <div class="form-group">
+        <label>Sexo:</label>
+        <select placeholder="AAAA-MM-DD"name="selectSexo" ng-model="sexo" ng-model="sexo" >
+            <option value="Masculino">Masculino</option>
+            <option value="Femenino">Femenino</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Escolaridad:</label>
+        <select name="escolaridad" ng-model="escolaridad">
+            <option value="Bachillerato">Bachillerato</option>
+            <option value="Universidad">Universidad</option>
+            <option value="Maestria">Maestria</option>
+            <option value="Doctorado">Doctorado</option>
+            <option value="Otra">Otra</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Referencias:</label>
+        <input type="text"  name="refs" ng-model="referencias" >
+    </div>
+    <div class="form-group">
+        <label>Horas de Terapia:</label>
+        <input type="text"  name="terapia" ng-model="hrsTerapia" >
+    </div>
+    <div class="form-group">
+        <label>Cuota:</label>
+        <input type="text"  name="cuota" ng-model="cuota" >
+    </div>
+    <button type="submit" class="btn btn-default">Ingresar</button>
+    <a class="btn btn-danger" href="#/personal/agregar">Cancelar</a>
+    </form>
+</div>

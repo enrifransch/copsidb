@@ -1,0 +1,33 @@
+<body>
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad">
+        <div class="panel panel-info" ng-controller="talleresDHIndividualController">
+            <div class="panel-heading">
+                <h3 class="panel-title">{{tallerDH.nombre}}</h3>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-9 col-lg-9">
+                        <table class="table table-user">
+                            <tbody>
+                                <tr>
+                                    <td>Costo:</td>
+                                    <td>{{tallerDH.costo}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-footer">
+                <span class="pull-right">
+                    <button type="button">
+                        <span class="fa fa-pencil-square-o" ng-click="editarTallerDH()"></span>
+                    </button>
+                    <button type="button">
+                        <span class="fa fa-trash"></span>
+                    </button>
+                </span>
+            </div>
+        </div>
+    </div>
+</body>

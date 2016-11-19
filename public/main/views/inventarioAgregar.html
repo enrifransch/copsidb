@@ -1,0 +1,29 @@
+<div ng-controller="inventarioAgregarController">
+    <h2>Perfil de inventario DH</h2>
+    <form ng-submit="addInventario()">
+    <div class="form-group">
+        <label>Nombre:</label>
+        <input type="text" name="nombre" ng-model="nombre" >
+    </div>
+    <div class="form-group">
+        <label>Cantidad:</label>
+        <input type="text" name="cantidad" ng-model="cantidad">
+    </div>
+    <div class="form-group">
+        <label>Tipo:</label>
+        <select name="tipo" ng-model="tipo">
+            <option value="Electronico">Electronico</option>
+            <option value="Mobiliario">Mobiliario</option>
+            <option value="Papeleria">Papeleria</option>
+            <option value="Limpieza">Limpieza</option>
+            <option value="Otro">Otro</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Comentarios:</label>
+        <input type="text" name="comentarios" ng-model="comentarios">
+    </div>
+    <button type="submit" class="btn btn-default">Ingresar</button>
+    <a class="btn btn-danger" href="#/inventario/agregar">Cancelar</a>
+    </form>
+</div>

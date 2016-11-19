@@ -1,11 +1,7 @@
 angular.module('copsiApp')
 .controller('alumnosController', ['$scope', '$http', '$location', function($scope, $http, $location){
-    $scope.currentPage = 1;
-    $scope.itemsPerPage = 10;
     $http.get('/alumnos').success(function(data){
         $scope.alumnos = data;
-        $scope.totalItems = data.length;
-
     });
     $scope.sort = function(keyname){
         $scope.sortKey = keyname;
@@ -21,15 +17,15 @@ angular.module('copsiApp')
     });
     $scope.editarAlumno = function(){
         $location.path('/alumnos/editar/' + $routeParams.id);
-    }
+    };
 }])
-.controller('alumnosEditarController', ['$scope', '$http', '$routeParams', '$location', function($scope, $http, $routeParams, $location){
+.controller('alumnosEditarController', ['$scope', '$http', '$routeParams', '$location', '$window', function($scope, $http, $routeParams, $location, $window){
     $http.get('alumnos/'+$routeParams.id).success(function(data){
         $scope.alumno = data;
     });
     $scope.updateAlumno = function(){
         var data = {
-            nombre: $scope.nombre,
+            nombre: $scope.alumno.nombre,
             apellidos: $scope.alumno.apellidos,
             direccion: $scope.alumno.direccion,
             email: $scope.alumno.email,
@@ -44,10 +40,10 @@ angular.module('copsiApp')
         };
         $http.put('/alumnos/edit/'+$routeParams.id, data).success(function(data, status){
             if(status===200){
-                $scope.message = 'Alumno actualizado con éxito';
+                $window.alert('Alumno actualizado con éxito');
                 $location.path('alumnos/');
             } else {
-                $scope.message = 'Error al actualizar alumno';
+                $window.alert('Error al actualizar alumno');
             }
         });
     };  
@@ -55,7 +51,7 @@ angular.module('copsiApp')
         $location.path('/alumnos/'+$routeParams.id);
     } 
 }])
-.controller('alumnosAgregarController', ['$scope', '$http', '$routeParams', '$location', function($scope, $http, $routeParams, $location){
+.controller('alumnosAgregarController', ['$scope', '$http', '$routeParams', '$location', '$window', function($scope, $http, $routeParams, $location, $window){
     $scope.addAlumno = function(){
         var data = {
             nombre: $scope.nombre,
@@ -73,9 +69,9 @@ angular.module('copsiApp')
         };  
         $http.post('/alumnos', data).success(function(data, status){
             if(status===200){
-                $scope.message = 'Alumno creado con éxito';
+                $window.alert('Alumno creado con éxito');
             } else {
-                $scope.message = 'Error al crear alumno';
+                $window.alert('Alumno creado con éxito');
             }
         });
     };

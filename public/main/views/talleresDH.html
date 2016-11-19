@@ -22,7 +22,7 @@
                 </th>
             </thead>
             <tbody>
-                <tr ng-repeat="taller in talleres|startFrom:(currentPage -1)*pageSize|limitTo:pageSize|orderBy:sortKey:reverse|filter:search" ng-dblclick="gettaller(taller)">
+                <tr ng-repeat="taller in talleres|startFrom:(currentPage -1)*pageSize|limitTo:pageSize|orderBy:sortKey:reverse|filter:search" ng-dblclick="getTaller(taller)">
                     <td>{{taller.id}}</td>
                     <td>{{taller.nombre}}</td>
                     <td>{{taller.costo}}</td>

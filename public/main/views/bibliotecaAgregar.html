@@ -1,0 +1,39 @@
+<div ng-controller="bibliotecaAgregarController">
+    <h2>Perfil de Libro</h2>
+    <form ng-submit="addLibro()">
+    <div class="form-group">
+        <label>ISBN:</label>
+        <input type="text" name="isbn" ng-model="isbn" >
+    </div>
+    <div class="form-group">
+        <label>Titulo:</label>
+        <input type="text" name="titulo" ng-model="titulo">
+    </div>
+    <div class="form-group">
+        <label>Autores:</label>
+        <input type="text"  name="autores" ng-model="autores">
+    </div>
+    <div class="form-group">
+        <label>Editorial:</label>
+        <input type="text"  name="editorial" ng-model="editorial" >
+    </div>
+    <div class="form-group">
+        <label>Genero:</label>
+        <input type="text"  name="genero" ng-model="genero" >
+    </div>
+    <div class="form-group">
+        <label>Numero de Paginas:</label>
+        <input type="text"  name="nPags" ng-model="nPags" >
+    </div>
+    <div class="form-group">
+        <label>Existencia:</label>
+        <input type="text"  name="existencia" ng-model="existencia" >
+    </div>
+    <div class="form-group">
+        <label>Comentarios:</label>
+        <input type="text"  name="comentarios" ng-model="comentarios" >
+    </div>
+    <button type="submit" class="btn btn-default">Ingresar</button>
+    <a class="btn btn-danger" href="#/biblioteca/agregar">Cancelar</a>
+    </form>
+</div>
