@@ -1,0 +1,54 @@
+<div ng-controller="initTallerDHController">
+    <h2>Iniciar TallerDH</h2>
+    <form ng-submit="initTallerDH()">
+    <div class="form-group">
+        <label>Inicio:</label>
+        <input type="text" name="inicio" ng-model="inicio" placeholder="AAAA-MM-DD" >
+    </div>
+    <div class="form-group">
+        <label>Fin:</label>
+        <input type="text" name="fin" ng-model="fin" placeholder="AAAA-MM-DD">
+    </div>
+    <div class="form-group">
+        <label>Taller:</label>
+        <select ng-model="tallerDH" name="tallerDH">
+            <option ng-repeat="tallerDH in talleres" value="{{tallerDH.id}}">{{tallerDH.nombre}}</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Maestro:</label>
+        <select ng-model="maestro" name="maestro">
+            <option ng-repeat="maestro in maestros" value="{{maestro.id}}">{{maestro.nombre}}</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-default">Ingresar</button>
+    <a class="btn btn-danger" href="#/init/tallerDH">Cancelar</a>
+    </form>
+</div>
+<div ng-controller="initTallerFSController">
+    <h2>Iniciar tallerFS</h2>
+    <form ng-submit="initTallerFS()">
+    <div class="form-group">
+        <label>Inicio:</label>
+        <input type="text" name="inicio" ng-model="inicio" placeholder="AAAA-MM-DD" >
+    </div>
+    <div class="form-group">
+        <label>Fin:</label>
+        <input type="text" name="fin" ng-model="fin" placeholder="AAAA-MM-DD">
+    </div>
+    <div class="form-group">
+        <label>Taller:</label>
+        <select ng-model="tallerFS" name="tallerFS">
+            <option ng-repeat="tallerFS in talleres" value="{{tallerFS.id}}">{{tallerFS.nombre}}</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Maestro:</label>
+        <select ng-model="maestro" name="maestro">
+            <option ng-repeat="maestro in maestros" value="{{maestro.id}}">{{maestro.nombre}}</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-default">Ingresar</button>
+    <a class="btn btn-danger" href="#/init/tallerFSs">Cancelar</a>
+    </form>
+</div>

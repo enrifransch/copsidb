@@ -67,6 +67,12 @@ copsiApp.config(function($routeProvider, $locationProvider){
         templateUrl: '../main/views/talleresFSIndividual.html'
     }).when('/talleresFS/editar/:id', {
         templateUrl: '../main/views/talleresFSEditar.html'
+    }).when('/init/cursos', {
+        templateUrl: '../main/views/cursosInit.html'
+    }).when('/init/talleres', {
+        templateUrl: '../main/views/talleresInit.html'
+    }).when('/init/diplomados', {
+        templateUrl: '../main/views/diplomadosInit.html'
     }).otherwise({redirectTo: '/main'
     });
 }).filter('startFrom', function(){

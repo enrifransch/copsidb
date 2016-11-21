@@ -1,0 +1,33 @@
+<div ng-controller="initDiplomadoController">
+    <h2>Iniciar Diplomado</h2>
+    <form ng-submit="initDiplomado()">
+    <div class="form-group">
+        <label>Inicio:</label>
+        <input type="text" name="inicio" ng-model="inicio" placeholder="AAAA-MM-DD" >
+    </div>
+    <div class="form-group">
+        <label>Fin:</label>
+        <input type="text" name="fin" ng-model="fin" placeholder="AAAA-MM-DD">
+    </div>
+    <div class="form-group">
+        <label>Diplomado:</label>
+        <select ng-model="diplomado" name="diplomado">
+            <option ng-repeat="diplomado in diplomados" value="{{diplomado.id}}">{{diplomado.nombre}}</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Maestro de Teoria:</label>
+        <select ng-model="maestroT" name="maestro">
+            <option ng-repeat="maestro in maestrosT" value="{{maestro.id}}">{{maestro.nombre}}</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Maestro de Practica:</label>
+        <select ng-model="maestroP" name="maestro">
+            <option ng-repeat="maestro in maestrosP" value="{{maestro.id}}">{{maestro.nombre}}</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-default">Ingresar</button>
+    <a class="btn btn-danger" href="#/init/diplomados">Cancelar</a>
+    </form>
+</div>

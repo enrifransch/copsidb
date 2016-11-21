@@ -338,6 +338,67 @@ app.post('/users/login', function (req, res) {
 	});
 });
 
+app.post('/curso_init', function (req, res) {
+	var body = _.pick(req.body, 'inicio', 'fin', 'curso', 'mtr');
+  db.curso_init.create({
+    inicio: body.inicio,
+    fin: body.fin
+  }).then(function (obj) {
+    obj.setDataValue('curso', body.curso);
+    obj.setDataValue('mtr', body.mtr);
+    obj.save(validate=true);
+    res.json(obj.toJSON);
+	}, function (e) {
+		res.status(400).json(e);
+	});
+});
+
+app.post('/diplomado_init', function (req, res) {
+	var body = _.pick(req.body, 'inicio', 'fin', 'diplomado', 'mtr_teoria', 'mtr_practica');
+  db.diplomado_init.create({
+    inicio: body.inicio,
+    fin: body.fin
+  }).then(function (obj) {
+    obj.setDataValue('diplomado', body.diplomado);
+    obj.setDataValue('mtr_teoria', body.mtr_teoria);
+    obj.setDataValue('mtr_practica', body.mtr_practica);
+    obj.save(validate=true);
+    res.json(obj.toJSON);
+	}, function (e) {
+		res.status(400).json(e);
+	});
+});
+
+app.post('/tallerDH_init', function (req, res) {
+	var body = _.pick(req.body, 'inicio', 'fin', 'taller', 'mtr');
+  db.tallerDH_init.create({
+    inicio: body.inicio,
+    fin: body.fin
+  }).then(function (obj) {
+    obj.setDataValue('tallerDH', body.taller);
+    obj.setDataValue('mtr', body.mtr);
+    obj.save(validate=true);
+    res.json(obj.toJSON);
+	}, function (e) {
+		res.status(400).json(e);
+	});
+});
+
+app.post('/tallerFS_init', function (req, res) {
+	var body = _.pick(req.body, 'inicio', 'fin', 'taller', 'mtr');
+  db.tallerFS_init.create({
+    inicio: body.inicio,
+    fin: body.fin
+  }).then(function (obj) {
+    obj.setDataValue('tallerFS', body.taller);
+    obj.setDataValue('mtr', body.mtr);
+    obj.save(validate=true);
+    res.json(obj.toJSON);
+	}, function (e) {
+		res.status(400).json(e);
+	});
+});
+
 //PUT Methods
 
 app.put('/alumnos/edit/:id', function(req, res){
