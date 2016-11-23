@@ -1,0 +1,54 @@
+<body>
+    <div class="table-title">
+        <h3>Cursos Iniciados</h3>
+    </div>
+    <div class="bs-component" ng-controller="insCursoController">
+        <form class="form-inline">
+            <div class="form-group">
+                <label >Buscar</label>
+                <input type="text" ng-model="search" class="form-control" placeholder="Search">
+            </div>
+        </form>
+        <table class="table table-striped table-hover">
+            <thead>
+                <th ng-click="sort('id')">ID
+                    <span ng-show="sortKey=='id'" ng-class="{'fa fa-sort-desc':reverse,'fa fa-sort-asc':!reverse}"></span>
+                </th>
+                <th ng-click="sort('inicio')">Inicio
+                    <span ng-show="sortKey=='inicio'" ng-class="{'fa fa-sort-desc':reverse,'fa fa-sort-asc':!reverse}"></span>
+                </th>
+                <th ng-click="sort('fin')">Fin
+                    <span ng-show="sortKey=='fin'" ng-class="{'fa fa-sort-desc':reverse,'fa fa-sort-asc':!reverse}"></span>
+                </th>
+                <th ng-click="sort('curso')">Curso
+                    <span ng-show="sortKey=='curso'" ng-class="{'fa fa-sort-desc':reverse,'fa fa-sort-asc':!reverse}"></span>
+                </th>
+                <th ng-click="sort('id_p1')">ID Maestro Teoria
+                    <span ng-show="sortKey=='id_p1'" ng-class="{'fa fa-sort-desc':reverse,'fa fa-sort-asc':!reverse}"></span>
+                </th>
+                <th ng-click="sort('mtrT')">Maestro Teoria
+                    <span ng-show="sortKey=='mtrT'" ng-class="{'fa fa-sort-desc':reverse,'fa fa-sort-asc':!reverse}"></span>
+                </th>
+            </thead>
+            <tbody>
+                <tr ng-repeat="curso in cursos|startFrom:(currentPage -1)*pageSize|limitTo:pageSize|orderBy:sortKey:reverse|filter:search" ng-dblclick="getCurso(curso)">
+                    <td>{{curso.id}}</td>
+                    <td>{{curso.inicio.slice(0, 10)}}</td>
+                    <td>{{curso.fin.slice(0, 10)}}</td>
+                    <td>{{curso.curso}}</td>
+                    <td>{{curso.id_p1}}</td>
+                    <td>{{curso.mtrT}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <!--
+        <uib-pagination
+            total-items="cursos.length"
+            max-size="5"
+            items-per-page="itemsPerPage"
+            ng-model="currentPage"
+            class="pagination-sm">
+        </uib-pagination>
+        -->
+    </div>
+</body>

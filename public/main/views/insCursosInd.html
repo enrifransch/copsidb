@@ -1,0 +1,45 @@
+<body>
+    <div class="bs-component" ng-controller="insCursoIndController">
+        <div class="table-title">
+            <h3>Alumnos Inscritos</h3>
+        </div>
+        <form ng-submit="addAlumno()">
+            <div class="form-group">
+                <label>Inscribir Alumno</label>
+                <select ng-model="nalumno" name="Curso">
+                    <option ng-repeat="nalumno in nalumnos" value="{{nalumno.id}}">{{nalumno.nombre+" "+nalumno.apellidos}}</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-default">Inscribir</button>
+        </form>
+        <table class="table table-striped table-hover">
+            <thead>
+                <th ng-click="sort('alumno')">Alumno
+                    <span ng-show="sortKey=='alumno'" ng-class="{'fa fa-sort-desc':reverse,'fa fa-sort-asc':!reverse}"></span>
+                </th>
+                <th ng-click="sort('id_a')">ID Alumno
+                    <span ng-show="sortKey=='id_a'" ng-class="{'fa fa-sort-desc':reverse,'fa fa-sort-asc':!reverse}"></span>
+                </th>
+                <th ng-click="sort('fecha')">Fecha Inscripcion
+                    <span ng-show="sortKey=='fecha'" ng-class="{'fa fa-sort-desc':reverse,'fa fa-sort-asc':!reverse}"></span>
+                </th>
+            </thead>
+            <tbody>
+                <tr ng-repeat="alumno in alumnos|startFrom:(currentPage -1)*pageSize|limitTo:pageSize|orderBy:sortKey:reverse|filter:search" ng-dblclick="getalumno(alumno)">
+                    <td>{{alumno.fecha.slice(0, 10)}}</td>
+                    <td>{{alumno.id_a}}</td>
+                    <td>{{alumno.alumno}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <!--
+        <uib-pagination
+            total-items="alumnos.length"
+            max-size="5"
+            items-per-page="itemsPerPage"
+            ng-model="currentPage"
+            class="pagination-sm">
+        </uib-pagination>
+        -->
+    </div>
+</body>

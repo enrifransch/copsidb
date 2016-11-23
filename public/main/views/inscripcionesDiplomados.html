@@ -1,0 +1,62 @@
+<body>
+    <div class="table-title">
+        <h3>diplomados Iniciados</h3>
+    </div>
+    <div class="bs-component" ng-controller="insDiplomadoController">
+        <form class="form-inline">
+            <div class="form-group">
+                <label >Buscar</label>
+                <input type="text" ng-model="search" class="form-control" placeholder="Search">
+            </div>
+        </form>
+        <table class="table table-striped table-hover">
+            <thead>
+                <th ng-click="sort('id')">ID
+                    <span ng-show="sortKey=='id'" ng-class="{'fa fa-sort-desc':reverse,'fa fa-sort-asc':!reverse}"></span>
+                </th>
+                <th ng-click="sort('inicio')">Inicio
+                    <span ng-show="sortKey=='inicio'" ng-class="{'fa fa-sort-desc':reverse,'fa fa-sort-asc':!reverse}"></span>
+                </th>
+                <th ng-click="sort('fin')">Fin
+                    <span ng-show="sortKey=='fin'" ng-class="{'fa fa-sort-desc':reverse,'fa fa-sort-asc':!reverse}"></span>
+                </th>
+                <th ng-click="sort('diplomado')">Diplomado
+                    <span ng-show="sortKey=='diplomado'" ng-class="{'fa fa-sort-desc':reverse,'fa fa-sort-asc':!reverse}"></span>
+                </th>
+                <th ng-click="sort('id_p1')">ID Maestro Teoria
+                    <span ng-show="sortKey=='id_p1'" ng-class="{'fa fa-sort-desc':reverse,'fa fa-sort-asc':!reverse}"></span>
+                </th>
+                <th ng-click="sort('mtrT')">Maestro Teoria
+                    <span ng-show="sortKey=='mtrT'" ng-class="{'fa fa-sort-desc':reverse,'fa fa-sort-asc':!reverse}"></span>
+                </th>
+                <th ng-click="sort('id_p2')">ID Maestro Practica
+                    <span ng-show="sortKey=='id_p2'" ng-class="{'fa fa-sort-desc':reverse,'fa fa-sort-asc':!reverse}"></span>
+                </th>
+                <th ng-click="sort('mtrP')">Maestro Practica
+                    <span ng-show="sortKey=='mtrP'" ng-class="{'fa fa-sort-desc':reverse,'fa fa-sort-asc':!reverse}"></span>
+                </th>
+            </thead>
+            <tbody>
+                <tr ng-repeat="diplomado in diplomados|startFrom:(currentPage -1)*pageSize|limitTo:pageSize|orderBy:sortKey:reverse|filter:search" ng-dblclick="getDiplomado(Diplomado)">
+                    <td>{{diplomado.id}}</td>
+                    <td>{{diplomado.inicio.slice(0, 10)}}</td>
+                    <td>{{diplomado.fin.slice(0, 10)}}</td>
+                    <td>{{diplomado.diplomado}}</td>
+                    <td>{{diplomado.id_p1}}</td>
+                    <td>{{diplomado.mtrT}}</td>
+                    <td>{{diplomado.id_p2}}</td>
+                    <td>{{diplomado.mtrP}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <!--
+        <uib-pagination
+            total-items="diplomados.length"
+            max-size="5"
+            items-per-page="itemsPerPage"
+            ng-model="currentPage"
+            class="pagination-sm">
+        </uib-pagination>
+        -->
+    </div>
+</body>

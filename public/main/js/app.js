@@ -73,6 +73,14 @@ copsiApp.config(function($routeProvider, $locationProvider){
         templateUrl: '../main/views/talleresInit.html'
     }).when('/init/diplomados', {
         templateUrl: '../main/views/diplomadosInit.html'
+    }).when('/inscripciones/cursos', {
+        templateUrl: '../main/views/inscripcionesCursos.html'
+    }).when('/inscripciones/cursos/:id', {
+        templateUrl: '../main/views/insCursosInd.html'
+    }).when('/inscripciones/diplomados', {
+        templateUrl: '../main/views/inscripcionesDiplomados.html'
+    }).when('/inscripciones/talleres', {
+        templateUrl: '../main/views/inscripcionesTalleres.html'
     }).otherwise({redirectTo: '/main'
     });
 }).filter('startFrom', function(){

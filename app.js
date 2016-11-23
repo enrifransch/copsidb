@@ -6,6 +6,8 @@ var _ = require('underscore');
 //var middleware = require('./middleware.js')(db);
 var bcrypt = require('bcryptjs');
 var db = require('./db.js');
+var sqlite3 = require('sqlite3');
+var dbc = new sqlite3.Database('./data/dev-copsidb.sqlite');
 
 var app = express();
 
@@ -240,6 +242,62 @@ app.get('/inventario/:id', function(req, res){
   });
 });
 
+app.get('/diplomados_init', function(req, res){
+  dbc.all('select diplomado_inits.id, inicio, fin, d.nombre as diplomado, p1.id as id_p1, (p1.nombre || " " || p1.apellidos) as mtrT, p2.id as id_p2, (p2.nombre || " " || p2.apellidos) '
+  + 'as mtrP from diplomado_inits inner join personals as p1 on diplomado_inits.mtr_teoria = p1.id inner join personals as p2 on diplomado_inits.mtr_practica = p2.id '
+  +  'inner join diplomados as d on diplomado_inits.diplomado = d.id;', 
+  function(err, rows){
+    if(err){
+      console.log('error', err);
+      res.status(400).json(err);
+      //dbc.close();
+    }
+    else{
+      res.json(rows);
+      //dbc.close();
+    }
+  });
+});
+
+app.get('/cursos_init', function(req, res){
+  dbc.all('select curso_inits.id, inicio, fin, c.nombre as curso, p1.id as id_p1, (p1.nombre || " " || p1.apellidos) as mtrT, c.id as cid '+
+            'from curso_inits '+
+            'inner join personals as p1 on curso_inits.mtr = p1.id '+
+            'inner join cursos as c on curso_inits.curso = c.id;', 
+  function(err, rows){
+    if(err){
+      console.log('error', err);
+      res.status(400).json(err);
+      //dbc.close();
+    }
+    else{
+      //console.log(rows);
+      res.json(rows);
+      //dbc.close();
+    }
+  });
+});
+
+app.get('/cursos_init/:id', function(req, res){
+  var cursoId = parseInt(req.params.id, 10);
+  dbc.all('select i.id, i.fecha, i.alumno as id_a, (a.nombre || " " || a.apellidos) as alumno '+
+            'from inscripcion_cursos as i '+
+            'inner join alumnos as a on a.id = i.alumno '+
+            'where i.curso_init ='+cursoId+';', 
+  function(err, rows){
+    if(err){
+      console.log('error', err);
+      res.status(400).json(err);
+      //dbc.close();
+    }
+    else{
+      //console.log(rows);
+      res.json(rows);
+      //dbc.close();
+    }
+  });
+});
+
 //POST Methods
 app.post('/alumnos', function(req, res){
   var body = _.pick(req.body, 'nombre', 'apellidos', 'direccion', 'email', 'celular', 'telefono', 'fechaNac', 'sexo', 'escolaridad', 'referencias', 'hrsTerapia', 'cuota');
@@ -393,6 +451,31 @@ app.post('/tallerFS_init', function (req, res) {
     obj.setDataValue('tallerFS', body.taller);
     obj.setDataValue('mtr', body.mtr);
     obj.save(validate=true);
+    res.json(obj.toJSON);
+	}, function (e) {
+		res.status(400).json(e);
+	});
+});
+
+app.post('/cursos_init', function (req, res) {
+  //console.log(req.body);
+	var body = _.pick(req.body, 'alumno', 'curso_init');
+  var today = new Date();
+  var dd = today.getDate();
+  var mm = today.getMonth()+1;
+  var yyyy = today.getFullYear();
+  if(dd<10){ dd='0'+dd } 
+  if(mm<10){ mm='0'+mm } 
+  var today = yyyy+'-'+mm+'-'+dd;
+  db.inscripcion_curso.create({
+    fecha: today,
+    alumno: body.alumno,
+    curso_init: body.curso_init
+  }).then(function (obj) {
+    console.log(obj);
+    /*obj.setDataValue('alumnoId', 1);
+    obj.setDataValue('cursoInitId', 1);
+    obj.save(validate=true);*/
     res.json(obj.toJSON);
 	}, function (e) {
 		res.status(400).json(e);

@@ -57,6 +57,12 @@ db.personal.hasOne(db.tallerFS_init, {foreignKey: 'mtr'});
 
 db.curso.hasOne(db.curso_init, {foreignKey: 'curso'});
 db.personal.hasOne(db.curso_init, {foreignKey: 'mtr'});
+/*
+db.alumno.hasMany(db.inscripcion_curso, {as: 'alumno'});
+db.curso_init.hasMany(db.inscripcion_curso, {as: 'curso_init'});
+
+db.alumno.belongsTo(db.inscripcion_curso, {foreignKey: 'alumno', foreignKeyConstraint:true});
+db.curso_init.belongsTo(db.inscripcion_curso, {foreignKey: 'curso_init', foreignKeyConstraint:true});
 
 db.alumno.hasOne(db.inscripcion_diplomado, {foreignKey: 'alumno'});
 db.diplomado.hasOne(db.inscripcion_diplomado, {foreignKey: 'diplomado_init'});
@@ -69,7 +75,7 @@ db.tallerFS_init.hasOne(db.inscripcion_tallerFS, {foreignKey: 'tallerFS_init'});
 
 db.alumno.hasOne(db.inscripcion_curso, {foreignKey: 'alumno'});
 db.curso_init.hasOne(db.inscripcion_curso, {foreignKey: 'curso_init'});
-
+*/
 db.diplomado_init.hasOne(db.cal_diplomado, {foreignKey: 'diplomado_init'});
 db.alumno.hasOne(db.cal_diplomado, {foreignKey: 'alumno'});
 
