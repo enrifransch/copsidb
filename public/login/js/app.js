@@ -1,6 +1,7 @@
 'use strict';
 
 var myApp = angular.module('copsiLogin', []);
+var auth_token = null;
 
 myApp.controller('loginController', ['$scope', '$http', '$window', function(scope, http, window){
 
@@ -15,11 +16,15 @@ myApp.controller('loginController', ['$scope', '$http', '$window', function(scop
             password: password
         }
 
-        if(username === 'copsi' && password === 'copsi'){
-
-           window.location.href = '/main';
-        }
-
-        console.log(username + password);
+        http({
+            method: 'POST',
+            url: 'users/login',
+            data: User
+        }).then(function(res){
+            //auth_token = res.headers('Auth');
+            window.location.href='/';
+        }).catch(function(err){
+            console.log(err);
+        });
     }
 }]);

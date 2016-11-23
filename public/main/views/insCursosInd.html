@@ -26,9 +26,9 @@
             </thead>
             <tbody>
                 <tr ng-repeat="alumno in alumnos|startFrom:(currentPage -1)*pageSize|limitTo:pageSize|orderBy:sortKey:reverse|filter:search" ng-dblclick="getalumno(alumno)">
-                    <td>{{alumno.fecha.slice(0, 10)}}</td>
-                    <td>{{alumno.id_a}}</td>
                     <td>{{alumno.alumno}}</td>
+                    <td>{{alumno.id_a}}</td>            
+                    <td>{{alumno.fecha.slice(0, 10)}}</td>
                 </tr>
             </tbody>
         </table>

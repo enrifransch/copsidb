@@ -3,15 +3,15 @@ var path = require('path');
 var favicon = require('serve-favicon');
 var bodyParser = require('body-parser');
 var _ = require('underscore');
-//var middleware = require('./middleware.js')(db);
 var bcrypt = require('bcryptjs');
 var db = require('./db.js');
 var sqlite3 = require('sqlite3');
 var dbc = new sqlite3.Database('./data/dev-copsidb.sqlite');
+var middleware = require('./middleware.js')(db);
 
 var app = express();
 
-var validuser = false;
+var validUser = false;
 var current_user;
 
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -20,12 +20,20 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', function(req, res){
-  res.sendFile('landing.html', {root: __dirname + '/public/main/'});
+  if(validUser){
+     res.sendFile('landing.html', {root: __dirname + '/public/main/'});
+  }
+  else res.sendFile('login.html', {root: __dirname + '/public/login'});
 });
 
 app.get('/forbidden', function(req, res){
   res.sendFile('forbidden.html', {root: __dirname + '/public/authorization'});
-});
+}); 
+
+function checkForAuth(request, response, next){
+    if(validuser) return next();
+    else response.status(403).sendFile('forbidden.html', { root: __dirname + "/public/authorization/" });
+}
 
 /*
 app.get('/main', function(req, res){
@@ -390,6 +398,8 @@ app.post('/users/login', function (req, res) {
 			token: token
 		});
 	}).then(function(tokenInstance){
+    validUser=true;
+    current_user=userInstance;
 		res.header('Auth', tokenInstance.get('token')).json(userInstance.toPublicJSON());
 	}).catch(function () {
 		res.status(401).send();
@@ -472,10 +482,6 @@ app.post('/cursos_init', function (req, res) {
     alumno: body.alumno,
     curso_init: body.curso_init
   }).then(function (obj) {
-    console.log(obj);
-    /*obj.setDataValue('alumnoId', 1);
-    obj.setDataValue('cursoInitId', 1);
-    obj.save(validate=true);*/
     res.json(obj.toJSON);
 	}, function (e) {
 		res.status(400).json(e);
@@ -597,8 +603,10 @@ app.put('/biblioteca/edit/:id', function(req, res){
 });
 
 //DELETE Methods
-app.delete('/users/login', /*middleware.requireAuthentication,*/ function(req, res){
+app.delete('/users/login', middleware.requireAuthentication, function(req, res){
 	req.token.destroy().then(function() {
+    validUser=false;
+    current_user=null;
 		res.status(204).send();
 	}).catch(function (){
 		res.status(500).send();
