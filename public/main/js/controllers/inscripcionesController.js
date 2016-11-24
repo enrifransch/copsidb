@@ -8,7 +8,8 @@ angular.module('copsiApp')
         $scope.reverse = !$scope.reverse;
     };
     $scope.getCurso = function(req){
-        $location.path('/inscripciones/cursos/' + req.cid);
+        console.log(req);
+        $location.path('/inscripciones/cursos/' + req.id);
     };
 }])
 .controller('insDiplomadoController', ['$scope', '$http', '$location', function($scope, $http, $location){
