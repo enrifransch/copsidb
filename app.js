@@ -603,7 +603,7 @@ app.put('/biblioteca/edit/:id', function(req, res){
 });
 
 //DELETE Methods
-app.delete('/users/login', middleware.requireAuthentication, function(req, res){
+/*app.delete('/users/login', middleware.requireAuthentication, function(req, res){
 	req.token.destroy().then(function() {
     validUser=false;
     current_user=null;
@@ -611,6 +611,12 @@ app.delete('/users/login', middleware.requireAuthentication, function(req, res){
 	}).catch(function (){
 		res.status(500).send();
 	});
+});*/
+
+app.delete('/users/login', function(req, res){
+    validUser=false;
+    current_user=null;
+		res.status(204).send();
 });
 
 app.delete('/alumno/:id', function(req, res){

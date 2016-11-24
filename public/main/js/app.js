@@ -92,12 +92,19 @@ copsiApp.config(function($routeProvider, $locationProvider){
 });
 
 
-copsiApp.controller('bodyController', ['$scope','$rootScope', '$location',
-    function($scope, $rootScope, $location){
+copsiApp.controller('bodyController', ['$scope','$rootScope', '$location', '$http', '$window',
+    function($scope, $rootScope, $location, $http, $window){
         $rootScope.$on('$RouteChangeSuccess', function(e, current, pre){
             var dec = $location.path().split('/');
             $scope.loc = '/' + dec[1];
         });
+        $scope.logout = function(){
+            $http.delete('/users/login').success(function(data){
+            });
+            $scope.goBack();
+        };
+        $scope.goBack = function(){
+            $window.location.reload();
+        };
     }
-    
 ]);
