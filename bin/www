@@ -1,52 +1,26 @@
 #!/usr/bin/env node
 
-/**
- * Module dependencies.
- */
-
 var app = require('../app');
 var debug = require('debug')('copsi-portal:server');
 var http = require('http');
 
 var fs = require('fs');
+
 var https = require('https');
-var key = fs.readFileSync('./hacksparrow-key.pem');
-var cert = fs.readFileSync('./hacksparrow-cert.pem')
-var https_options = {
-    key: key,
-    cert: cert
+var credentials = {
+    key: fs.readFileSync('./hacksparrow-key.pem'),
+    cert: fs.readFileSync('./hacksparrow-cert.pem')
 };
 
-/**
- * Get port from environment and store in Express.
- */
-
-//var port = normalizePort(process.env.PORT || '3333');
-var port = 3333;
-var HOST = 'localhost';
+var port = normalizePort(process.env.PORT || '3333');
 app.set('port', port);
 
-/**
- * Create HTTP server.
- */
+var server = https.createServer(credentials, app);
+server.listen(port, function(){
+});
 
-//var server = http.createServer(app);
-var httpServer = http.createServer(app);
-var server = https.createServer(https_options, app).listen(port, HOST);
-server.listen(port);
-httpServer.listen(3300);
-
-/**
- * Listen on provided port, on all network interfaces.
- */
-
-server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
-
-/**
- * Normalize a port into a number, string, or false.
- */
 
 function normalizePort(val) {
   var port = parseInt(val, 10);
@@ -64,10 +38,6 @@ function normalizePort(val) {
   return false;
 }
 
-/**
- * Event listener for HTTP server "error" event.
- */
-
 function onError(error) {
   if (error.syscall !== 'listen') {
     throw error;
@@ -77,7 +47,6 @@ function onError(error) {
     ? 'Pipe ' + port
     : 'Port ' + port;
 
-  // handle specific listen errors with friendly messages
   switch (error.code) {
     case 'EACCES':
       console.error(bind + ' requires elevated privileges');
@@ -91,10 +60,6 @@ function onError(error) {
       throw error;
   }
 }
-
-/**
- * Event listener for HTTP server "listening" event.
- */
 
 function onListening() {
   var addr = server.address();
